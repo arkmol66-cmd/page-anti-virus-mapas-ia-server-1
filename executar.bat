@@ -1,0 +1,13 @@
+@echo off
+echo Parando processos anteriores...
+call parar_todos.bat
+echo.
+echo Compilando Antivirus IA com .NET 10...
+dotnet build AntivirusIA.sln -c Release
+echo.
+echo Copiando servico de rede...
+copy /Y "AntivirusIA.Network\bin\Release\net10.0\AntivirusIA.Network.exe" "AntivirusIA\bin\Release\net10.0-windows\" >nul
+copy /Y "AntivirusIA.Network\bin\Release\net10.0\*.dll" "AntivirusIA\bin\Release\net10.0-windows\" >nul
+echo.
+echo Executando...
+.\AntivirusIA\bin\Release\net10.0-windows\AntivirusIA.exe
