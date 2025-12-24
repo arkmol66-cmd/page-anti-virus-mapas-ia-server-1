@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Download - AntivirusIA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="check-box">Verificando compatibilidade...</div>
+
+        <div id="alert-os" style="display:none;" class="aviso-erro">
+            <h3>Sistema incompatível</h3>
+            <p>Não temos o app para o seu sistema operacional. Só temos para Windows 10 e 11.</p>
+            <a href="sistemas.html" class="btn">Ver Sistemas Testados</a>
+        </div>
+
+        <div id="win-options" style="display:none;">
+            <h1>Escolha a Versão</h1>
+            <p>AntivirusIA para Windows 10/11</p>
+            <button onclick="baixar('cliente')" class="btn">Versão Cliente (Standard)</button>
+            <button onclick="baixar('adm')" class="btn btn-secondary">Versão Administrador</button>
+        </div>
+    </div>
+
+    <script>
+        const platform = navigator.platform.toLowerCase();
+        const isWin = platform.includes('win');
+
+        setTimeout(() => {
+            document.getElementById('check-box').style.display = 'none';
+            if (isWin) {
+                document.getElementById('win-options').style.display = 'block';
+            } else {
+                document.getElementById('alert-os').style.display = 'block';
+            }
+        }, 1000);
+
+        function baixar(tipo) {
+            const paths = {
+                'cliente': 'AntivirusIA/bin/Debug/net10.0-windows/AntivirusIA.exe',
+                'adm': 'AntivirusIA/AntivirusIA.exe'
+            };
+            window.location.href = paths[tipo];
+        }
+    </script>
+</body>
+</html>
